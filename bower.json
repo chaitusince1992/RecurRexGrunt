@@ -1,0 +1,22 @@
+{
+  "name": "recurex",
+  "description": "recurring orders management",
+  "main": "index.js",
+  "authors": [
+    "Krishna Kotu"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "angular": "^1.6.0"
+  }
+}
