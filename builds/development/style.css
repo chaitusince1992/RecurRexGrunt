@@ -1,5 +1,108 @@
 body {
-  margin: 0;
+  margin: 0px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+.each-page-container {
+  height: 100vh;
+}
+.each-page-container.home {
+  overflow: hidden;
+}
+
+.page-header {
+  background: #ff3939;
+  height: 80px;
+  color: white;
+  text-align: center;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  height: 30px;
+  background: #333333;
+  color: white;
+  text-align: center;
+}
+
+.page-content {
+  background: #d0d0d0;
+}
+
+.recurerex-icon-container {
+  height: 90%;
+  padding: 5px 0px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  width: 25%;
+}
+.recurerex-icon-container img {
+  height: 100%;
+  cursor: pointer;
+}
+
+.page-name {
+  display: inline-block;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.signup-signin-block {
+  vertical-align: middle;
+  text-align: right;
+  display: inline-block;
+  width: 20%;
+  padding: 5px 0;
+  color: white;
+  border-radius: 2px;
+  font-size: 1.2em;
+}
+.signup-signin-block:hover {
+  background: #ec1313;
+}
+
+.home-page-content {
+  width: 100%;
+  height: 500px;
+}
+
+.home-page-content {
+  background-image: url("img/shutterstock_285150836.jpg");
+  background-position: center center;
+  background-size: 100%;
+}
+
+.social-links {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+.social-links img {
+  width: 100%;
+}
+
+.copy-rights {
+  width: 25%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.social-links-contaner {
+  width: 70%;
+  vertical-align: middle;
+  text-align: right;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */

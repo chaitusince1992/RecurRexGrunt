@@ -1,3 +1,107 @@
+$red: red;
+$low-red: #ec1313;
+$light-red: #ff3939;
+$light-grey: #d0d0d0;
+$white: white;
+$dark-grey: #333333;
+$header-height: 80px;
+$footer-height: 30px;
+$header-bgcolor: $light-red;
+$content-bgcolor: $light-grey;
+$footer-bgcolor: $dark-grey;
+$header-color: $white;
+$footer-color: $white;
 body {
-    margin: 0;
+    margin: 0px;
+    position: relative;
+}
+a {
+    text-decoration: none;
+}
+.each-page-container {
+    height: 100vh;
+    &.home {
+        overflow: hidden;
+    }
+}
+.page-header {
+    background: $header-bgcolor;
+    height: $header-height;
+    color: $header-color;
+    text-align: center;
+}
+.page-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    height: $footer-height;
+    background: $footer-bgcolor;
+    color: $footer-color;
+    text-align: center;
+}
+.page-content {
+    background: $content-bgcolor;
+}
+.recurerex-icon-container {
+    height: 90%;
+    padding: 5px 0px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    width: 25%;
+    img {
+        height: 100%;
+        cursor: pointer;
+    }
+}
+.page-name {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+}
+.signup-signin-block {
+    vertical-align: middle;
+    text-align: right;
+    display: inline-block;
+    width: 20%;
+    padding: 5px 0;
+    color: $header-color;
+    border-radius: 2px;
+    font-size: 1.2em;
+    &:hover {
+        background: $low-red;
+    }
+}
+%page-content {
+    width: 100%;
+    height: 500px;
+}
+.home-page-content {
+    @extend %page-content;
+    background-image: url('img/shutterstock_285150836.jpg');
+    background-position: center center;
+    background-size: 100%;
+}
+.social-links {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    vertical-align: middle;
+    img {
+        width: 100%;
+    }
+}
+.copy-rights {
+    width: 25%;
+    vertical-align: middle;
+    display: inline-block;
+}
+.social-links-contaner {
+    width: 70%;
+    vertical-align: middle;
+    text-align: right;
+    display: inline-block;
 }

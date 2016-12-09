@@ -1,12 +1,12 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         copy: {
-            main: {
+            dist: {
                 files: [
                     {
                         expand: true,
                         cwd: 'src',
-                        src: '*.html',
+                        src: '**/*.html',
                         dest: 'builds/development',
                         filter: 'isFile'
                     },
@@ -15,6 +15,20 @@ module.exports = function (grunt) {
                         cwd: 'src/img',
                         src: '**',
                         dest: 'builds/development/img',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/lib/',
+                        src: ['**'],
+                        dest: 'builds/development/lib',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/js/',
+                        src: ['**'],
+                        dest: 'builds/development/js',
                         filter: 'isFile'
                     }
                 ]
@@ -52,6 +66,10 @@ module.exports = function (grunt) {
             html: {
                 files: ['src/**/*.html'],
                 tasks: ['copy']
+            },
+            scripts: {
+                files: ['src/**/*.js', 'src/**/*.scss'],
+                tasks: ['sass', 'copy']
             }
         }
     });
@@ -61,5 +79,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['copy','sass', 'connect', 'watch']);
+    grunt.registerTask('default', ['copy', 'sass', 'connect', 'watch']);
 }
