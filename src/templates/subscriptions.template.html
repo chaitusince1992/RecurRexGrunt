@@ -1,0 +1,31 @@
+<div class="each-page-container home" ng-init=init()>
+    <div class="page-header">
+        <a class="recurerex-icon-container" href="#home"><img src="img/logo.png" />
+        </a>
+        <div class="page-name">Subscriptions</div>
+        <a class="signup-login-block" ng-click="signout()">Signout</a>
+    </div>
+    <div class="home-page-content login">
+        <div class="subscription-container" ng-repeat="subscription in subscriptions">
+            <div class="business-name">{{subscription.business.name}}</div>
+            <div>{{dateFormat(subscription.start_date.date)}}</div>
+            <div>{{dateFormat(subscription.end_date.date)}}</div>
+            <div class="subscription-status-parent" ng-repeat="delivery in subscription.deliveries | orderBy:'delivery_date'">
+                <div class="delivery-date">{{delivery.delivery_date}}</div>
+                <div class="subscription-status" ng-style="procesState(delivery.delivery_code)">{{delivery.delivery_status}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer">
+        <div class="copy-rights">&copy; NPM Technologies</div>
+        <div class="social-links-contaner">
+            Social Network
+            <a class="social-links" href="https://www.facebook.com/NPMTechnologies" name="Facebook">
+                <img src="img/FB-fLogo-Blue-broadcast-2.png" />
+            </a>
+            <a class="social-links" href="https://twitter.com/npmtechnologies">
+                <img src="img/Twitter_Logo_Blue.png" />
+            </a>
+        </div>
+    </div>
+</div>

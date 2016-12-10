@@ -94,6 +94,7 @@ form {
   color: white;
   border-radius: 2px;
   font-size: 1.2em;
+  cursor: pointer;
 }
 .signup-login-block:hover {
   background: #ec1313;
@@ -159,6 +160,7 @@ form {
   padding: 0 10px;
   text-align: left;
   color: #636363;
+  width: 250px;
 }
 .login-signup-block.signup {
   border-left: 2px solid #DDDDDD;
@@ -177,7 +179,9 @@ form {
 }
 .login-signup-block .error-message {
   padding: 0 5px;
-  height: 20px;
+  min-height: 20px;
+  color: red;
+  font-size: 0.8em;
 }
 
 .block-label {
@@ -186,6 +190,59 @@ form {
   font-size: 1.2em;
   padding: 5px;
   border-bottom: 2px solid #DDDDDD;
+}
+
+.product-container {
+  background: white;
+  width: 250px;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.product-container .product-name {
+  padding: 5px;
+  cursor: pointer;
+}
+.product-container .product-image {
+  width: 100%;
+  height: 230px;
+  background-position: center center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.subscription-container {
+  background: white;
+}
+
+.subscription-container {
+  background: white;
+  width: 400px;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.business-name {
+  border-bottom: 2px solid grey;
+  font-size: 1.2em;
+  padding: 5px 0;
+}
+
+.subscription-status-parent {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+}
+.subscription-status-parent div {
+  display: inline-block;
+}
+
+.subscription-status {
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

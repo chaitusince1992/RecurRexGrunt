@@ -1,4 +1,4 @@
-<div class="each-page-container home">
+<div class="each-page-container home" ng-init=init()>
     <div class="page-header">
         <a class="recurerex-icon-container" href="#home"><img src="img/logo.png" />
         </a>
@@ -14,6 +14,7 @@
                     <input type="email" name="email" placeholder="Email" ng-model="emailLogin" ng-required="true" required />
                     <label>Password:</label>
                     <input type="password" name="password" placeholder="Password" ng-model="passwordLogin" ng-required="true" required/>
+                    <div class="error-message"><span ng-show="login.$dirty">{{errorMessageLogin}}</span></div>
                     <button type="submit" ng-disabled="login.$invalid">Submit</button>
                 </form>
             </div>

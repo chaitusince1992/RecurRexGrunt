@@ -14,14 +14,14 @@
                 <option value="" selected>Select Plan</option>
                 <option ng-repeat="recur in product.recurrence" value={{recur}}>{{recur.name}}</option>
             </select>-->
-            <div ng-repeat="recur in product.recurrence">
+            <!--<div ng-repeat="recur in product.recurrence">
                 <input type='radio' name="recurance" value={{recur.name}} ng-model="product.selectedRecur" ng-click="changePlan()"/>
                 <label class="recuring-name" ng-click="clickOnRecur(recur)">{{recur.name}}</label>
-                <!--<select ng-model="selectedPayment">
+                <select ng-model="selectedPayment">
                     <option value="" selected>Select Payment</option>
                     <option ng-repeat="payment in recur.payment_type_formatted" value="payment.key">{{payment.value}}</option>
-                </select>-->
-            </div>
+                </select>
+            </div>-->
             <!--<select ng-model="product.selectedPayment">
                 <option value="" selected>Select Payment</option>
                 <option ng-repeat="payment in JSON.parse(product.selectedRecur).payment_type_formatted" value="payment.key">{{payment.value}}</option>

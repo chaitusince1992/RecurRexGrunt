@@ -30,6 +30,13 @@ module.exports = function (grunt) {
                         src: ['**'],
                         dest: 'builds/development/js',
                         filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/assets/',
+                        src: ['**'],
+                        dest: 'builds/development/assets',
+                        filter: 'isFile'
                     }
                 ]
             }
