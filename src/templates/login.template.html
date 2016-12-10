@@ -1,0 +1,53 @@
+<div class="each-page-container home">
+    <div class="page-header">
+        <a class="recurerex-icon-container" href="#home"><img src="img/logo.png" />
+        </a>
+        <div class="page-name"></div>
+        <a class="signup-login-block login" ng-href="#login"></a>
+    </div>
+    <div class="home-page-content login">
+        <div class="login-signup-block-container">
+            <div class="login-signup-block login">
+                <div class="block-label login">Login</div>
+                <form class="login" name="login" ng-submit="submitLogin(login.$valid)" novalidate>
+                    <label>Email:</label>
+                    <input type="email" name="email" placeholder="Email" ng-model="emailLogin" ng-required="true" required />
+                    <label>Password:</label>
+                    <input type="password" name="password" placeholder="Password" ng-model="passwordLogin" ng-required="true" required/>
+                    <button type="submit" ng-disabled="login.$invalid">Submit</button>
+                </form>
+            </div>
+            <div class="login-signup-block signup">
+                <div class="block-label signup">Signup</div>
+                <form class="sign-up">
+<!--                    <label>First Name:</label>-->
+                    <input type="text" name="First Name" placeholder="First Name" ng-model="firstname" required/>
+<!--                    <label>Last Name:</label>-->
+                    <input type="text" name="Last Name" placeholder="Last Name" ng-model="lastname" required/>
+<!--                    <label>Email:</label>-->
+                    <input type="email" name="email" placeholder="Email" ng-model="emailSignup" required/>
+<!--                    <label>Password:</label>-->
+                    <input type="password" name="password" placeholder="Password" ng-model="passwordSignup" required/>
+<!--                    <label>Re-Enter Password:</label>-->
+                    <input type="password" name="password" placeholder="Re-enter Password" ng-model="reenterpassword" required/>
+<!--                    <label>Mobile Number:</label>-->
+                    <input type="number" name="Mobile Number" placeholder="Mobile Number" ng-model="phonenumber" required/>
+                    <div class="error-message"><span>Wrong email</span></div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="page-footer">
+        <div class="copy-rights">&copy; NPM Technologies</div>
+        <div class="social-links-contaner">
+            Social Network
+            <a class="social-links" href="https://www.facebook.com/NPMTechnologies" name="Facebook">
+                <img src="img/FB-fLogo-Blue-broadcast-2.png" />
+            </a>
+            <a class="social-links" href="https://twitter.com/npmtechnologies">
+                <img src="img/Twitter_Logo_Blue.png" />
+            </a>
+        </div>
+    </div>
+</div>

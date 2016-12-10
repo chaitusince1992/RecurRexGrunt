@@ -9,19 +9,60 @@ $footer-height: 30px;
 $header-bgcolor: $light-red;
 $content-bgcolor: $light-grey;
 $footer-bgcolor: $dark-grey;
+$login-background: rgba(0, 0, 0, 0.9);
 $header-color: $white;
 $footer-color: $white;
+$button-color: #5e8ae6;
+$input-border-hover-color: #000000;
+$input-border-focus-color: #000000;
 body {
     margin: 0px;
     position: relative;
+    min-height: 100vh;
 }
 a {
     text-decoration: none;
 }
+input {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: left;
+    &[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    &:hover {
+        border-top-color: $input-border-hover-color;
+        border-left-color: $input-border-hover-color;
+    }
+    &:focus {
+        outline: none;
+    }
+    &.ng-invalid {
+        background: #ffd5d5;
+    }
+    &.ng-pristine {
+        background: initial;
+    }
+}
+button {
+    border: none;
+    background: $button-color;
+    margin: 5px;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+    &:disabled {
+        background: grey;
+    }
+}
+form {
+    margin-top: 10px;
+}
 .each-page-container {
-    height: 100vh;
+    //    height: 100vh;
     &.home {
-        overflow: hidden;
+        //        overflow: hidden;
     }
 }
 .page-header {
@@ -31,10 +72,6 @@ a {
     text-align: center;
 }
 .page-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     padding: 15px;
     height: $footer-height;
     background: $footer-bgcolor;
@@ -61,28 +98,36 @@ a {
     vertical-align: middle;
     width: 50%;
 }
-.signup-signin-block {
+.signup-login-block {
     vertical-align: middle;
-    text-align: right;
+    text-align: center;
     display: inline-block;
     width: 20%;
-    padding: 5px 0;
+    padding: 5px;
     color: $header-color;
     border-radius: 2px;
     font-size: 1.2em;
     &:hover {
         background: $low-red;
     }
+    &.login {
+        padding: 0;
+        height: 0;
+    }
 }
 %page-content {
     width: 100%;
-    height: 500px;
+    min-height: 500px;
 }
 .home-page-content {
     @extend %page-content;
     background-image: url('img/shutterstock_285150836.jpg');
     background-position: center center;
     background-size: 100%;
+    &.login {
+        background: $login-background;
+        text-align: center;
+    }
 }
 .social-links {
     display: inline-block;
@@ -104,4 +149,47 @@ a {
     vertical-align: middle;
     text-align: right;
     display: inline-block;
+}
+.login-signup-block-container {
+    vertical-align: middle;
+    margin: auto;
+    background: white;
+    text-align: left;
+    display: inline-block;
+    margin: 15px 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+.login-signup-block {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 10px;
+    text-align: left;
+    color: #636363;
+    &.signup {
+        border-left: 2px solid #DDDDDD;
+    }
+    input {
+        width: 90%;
+        display: block;
+    }
+    button {
+        width: 96%;
+        font-size: 0.9em;
+    }
+    label {
+        display: block;
+        margin: 0 5px;
+    }
+    .error-message {
+        padding: 0 5px;
+        height: 20px;
+    }
+}
+.block-label {
+    text-align: center;
+    color: #5f5e5e;
+    font-size: 1.2em;
+    padding: 5px;
+    border-bottom: 2px solid #DDDDDD;
 }
