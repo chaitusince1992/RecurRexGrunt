@@ -1,32 +1,45 @@
 <div class="each-page-container home" ng-init=init()>
     <div class="page-header">
-        <a class="recurerex-icon-container" href="#home"><img src="img/logo.png" />
+        <a class="recurerex-icon-container" href="#login"><img src="img/logo.png" />
         </a>
         <div class="page-name">Products</div>
-        <a class="signup-login-block" ng-click="signout()">Signout</a>
+        <a class="navigation-link" ng-href="#subscriptions">Subscriptions</a>
+        <a class="signup-login-link" ng-click="signout()"><img src="img/logoff.png"></a>
     </div>
     <div class="home-page-content login">
         <div class="product-container" ng-repeat="product in productList">
             <div class="product-image" ng-style="productimage(product)" ng-click="clickedOnProduct(product)"></div>
             <div class="product-name">{{product.name}}</div>
+            <div>{{product.description}}</div>
             <div class="product-price">&#8377; {{product.price}}</div>
-            <!--<select ng-model="product.selectedRecur">
-                <option value="" selected>Select Plan</option>
-                <option ng-repeat="recur in product.recurrence" value={{recur}}>{{recur.name}}</option>
-            </select>-->
-            <!--<div ng-repeat="recur in product.recurrence">
-                <input type='radio' name="recurance" value={{recur.name}} ng-model="product.selectedRecur" ng-click="changePlan()"/>
-                <label class="recuring-name" ng-click="clickOnRecur(recur)">{{recur.name}}</label>
-                <select ng-model="selectedPayment">
-                    <option value="" selected>Select Payment</option>
-                    <option ng-repeat="payment in recur.payment_type_formatted" value="payment.key">{{payment.value}}</option>
-                </select>
-            </div>-->
-            <!--<select ng-model="product.selectedPayment">
-                <option value="" selected>Select Payment</option>
-                <option ng-repeat="payment in JSON.parse(product.selectedRecur).payment_type_formatted" value="payment.key">{{payment.value}}</option>
-            </select>-->
-            <div class="product-subscribe">Subscribe</div>
+        </div>
+        <div class="subscription-popup" ng-show="subscriptionPopup">
+            <form class="subscribe-container" name="subscribe">
+                <div class="recur-subscribe-parent">
+                    <div class="recur-pay-label">Select Recurance Type:</div>
+                    <div class="recur-subscribe" ng-repeat="recur in recur" ng-init="recurType='test'">
+                        <input type='radio' name="recurance" value={{recur.code}} ng-click="selectedRecur(recur)" ng-model="recurType" ng-required="true" required />
+                        <label class="recuring-name">{{recur.name}}</label>
+                    </div>
+                </div>
+                <div class="payment-list-parent" ng-show='paymentListVisibility'>
+                    <div class="recur-pay-label">Select Payment Type</div>
+                    <div class="recur-subscribe" ng-repeat="pay in payments">
+                        <input type='radio' name="payment" value={{pay.key}} ng-click="selectedPayment(pay.key)" ng-model="paymentmode" ng-required="true" required />
+                        <label class="recuring-name">{{pay.value}}</label>
+                    </div>
+                </div>
+                <div class="payment-list-parent">
+                    <label ng-click="test()">Quantity</label>
+                    <input type="number" name="quantity" ng-model="noOfProducts" ng-required="true" required />
+                </div>
+                <div class="payment-list-parent">
+                    <label ng-click="test()">Quantity</label>
+                    <input type="date" name="fromdate" ng-model="startingDate" ng-required="true" required />
+                </div>
+                <button type="submit" ng-disabled="subscribe.$invalid" ng-click="subscribeToProduct()">Subscribe</button>
+                <div class="close-sub" ng-click="closePopUp()">X</div>
+            </form>
         </div>
     </div>
     <div class="page-footer">

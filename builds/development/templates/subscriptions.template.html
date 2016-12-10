@@ -1,19 +1,30 @@
 <div class="each-page-container home" ng-init=init()>
     <div class="page-header">
-        <a class="recurerex-icon-container" href="#home"><img src="img/logo.png" />
+        <a class="recurerex-icon-container" href="#login"><img src="img/logo.png" />
         </a>
-        <div class="page-name">Subscriptions</div>
-        <a class="signup-login-block" ng-click="signout()">Signout</a>
+        <div class="page-name">User Subscriptions</div>
+        <a class="navigation-link" ng-href="#products">Products</a>
+        <a class="signup-login-link" ng-click="signout()"><img src="img/logoff.png"></a>
     </div>
     <div class="home-page-content login">
-        <div class="subscription-container" ng-repeat="subscription in subscriptions">
-            <div class="business-name">{{subscription.business.name}}</div>
-            <div>{{dateFormat(subscription.start_date.date)}}</div>
-            <div>{{dateFormat(subscription.end_date.date)}}</div>
-            <div class="subscription-status-parent" ng-repeat="delivery in subscription.deliveries | orderBy:'delivery_date'">
-                <div class="delivery-date">{{delivery.delivery_date}}</div>
-                <div class="subscription-status" ng-style="procesState(delivery.delivery_code)">{{delivery.delivery_status}}</div>
+        <div class="subscription-container" ng-repeat="subscription in subscriptions" ng-show="!errorMessageSubscription">
+            <div class="business-name">{{subscription.business.name}}
+                <div>{{subscription.business.description}}</div>
             </div>
+            <div class="date-range">
+                <div>{{dateFormat(subscription.start_date.date)}}</div>
+                <div>to</div>
+                <div>{{dateFormat(subscription.end_date.date)}}</div>
+            </div>
+            <div class="subscription-scroll">
+                <div class="subscription-status-parent" ng-repeat="delivery in subscription.deliveries | orderBy:'delivery_date'">
+                    <div class="delivery-date">{{delivery.delivery_date}}</div>
+                    <div class="subscription-status" ng-style="procesState(delivery.delivery_code)">{{delivery.delivery_status}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="subscription-container error-message" ng-show="errorMessageSubscription">
+            No Subscriptions are available. Go to <a href="#products">products</a> to Subscribe.
         </div>
     </div>
     <div class="page-footer">

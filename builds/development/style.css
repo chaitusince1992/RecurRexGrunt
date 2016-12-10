@@ -2,10 +2,13 @@ body {
   margin: 0px;
   position: relative;
   min-height: 100vh;
+  font-family: calibri;
 }
 
 a {
   text-decoration: none;
+  color: initial;
+  font-weight: bold;
 }
 
 input {
@@ -15,6 +18,9 @@ input {
   text-align: left;
 }
 input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 input:hover {
@@ -83,25 +89,34 @@ form {
   display: inline-block;
   vertical-align: middle;
   width: 50%;
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
-.signup-login-block {
+.signup-login-link,
+.navigation-link {
   vertical-align: middle;
   text-align: center;
   display: inline-block;
-  width: 20%;
   padding: 5px;
   color: white;
   border-radius: 2px;
   font-size: 1.2em;
   cursor: pointer;
 }
-.signup-login-block:hover {
+.signup-login-link:hover,
+.navigation-link:hover {
   background: #ec1313;
 }
-.signup-login-block.login {
+.signup-login-link.login,
+.navigation-link.login {
   padding: 0;
   height: 0;
+}
+.signup-login-link img,
+.navigation-link img {
+  width: 20px;
+  filter: invert(100%);
 }
 
 .home-page-content {
@@ -203,6 +218,7 @@ form {
 .product-container .product-name {
   padding: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 .product-container .product-image {
   width: 100%;
@@ -222,6 +238,13 @@ form {
   display: inline-block;
   padding: 5px;
   border-radius: 5px;
+  height: 250px;
+  overflow: hidden;
+  margin: 15px 10px;
+}
+.subscription-container.error-message {
+  padding: 20px;
+  font-size: 2em;
 }
 
 .business-name {
@@ -243,6 +266,86 @@ form {
   padding: 5px;
   border-radius: 5px;
   color: white;
+}
+
+.date-range {
+  border-bottom: 2px solid grey;
+  text-align: center;
+}
+.date-range div {
+  display: inline-block;
+  width: 30%;
+  padding: 5px 0;
+}
+
+.subscription-scroll {
+  height: 165px;
+  overflow: auto;
+}
+
+.subscription-popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.subscribe-container {
+  width: 45%;
+  background: #f1f1f1;
+  display: inline-block;
+  top: 20%;
+  left: 25%;
+  position: absolute;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+.subscribe-container button {
+  width: 80%;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.recur-pay-label {
+  font-weight: bold;
+  padding: 5px;
+}
+
+.recur-subscribe-parent {
+  padding: 5px;
+  border-bottom: 2px solid #cccccc;
+}
+
+.payment-list-parent {
+  border-bottom: 2px solid #cccccc;
+  padding: 5px;
+}
+
+.close-sub {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  padding: 5px;
+  background: red;
+  border-radius: 35px;
+  width: 20px;
+  height: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.recur-subscribe {
+  display: inline-block;
+  vertical-align: middle;
+}
+.recur-subscribe input {
+  text-align: left;
+  vertical-align: middle;
+}
+.recur-subscribe label {
+  vertical-align: middle;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,9 @@
 <div class="each-page-container home" ng-init=init()>
     <div class="page-header">
-        <a class="recurerex-icon-container" href="#home"><img src="img/logo.png" />
+        <a class="recurerex-icon-container" href="#login"><img src="img/logo.png" />
         </a>
-        <div class="page-name"></div>
-        <a class="signup-login-block login" ng-href="#login"></a>
+        <div class="page-name">Signin/Signup</div>
+<!--        <a class="signup-login-link login" ng-href="#login"></a>-->
     </div>
     <div class="home-page-content login">
         <div class="login-signup-block-container">
@@ -20,21 +20,21 @@
             </div>
             <div class="login-signup-block signup">
                 <div class="block-label signup">Signup</div>
-                <form class="sign-up">
+                <form class="sign-up" name="signup" ng-submit="submitSignup(signup.$valid)" novalidate>
 <!--                    <label>First Name:</label>-->
-                    <input type="text" name="First Name" placeholder="First Name" ng-model="firstname" required/>
+                    <input type="text" name="First Name" placeholder="First Name" ng-model="firstname" ng-required="true" required/>
 <!--                    <label>Last Name:</label>-->
-                    <input type="text" name="Last Name" placeholder="Last Name" ng-model="lastname" required/>
+                    <input type="text" name="Last Name" placeholder="Last Name" ng-model="lastname" ng-required="true" required/>
 <!--                    <label>Email:</label>-->
-                    <input type="email" name="email" placeholder="Email" ng-model="emailSignup" required/>
+                    <input type="email" name="email" placeholder="Email" ng-model="emailSignup" ng-required="true" required/>
 <!--                    <label>Password:</label>-->
-                    <input type="password" name="password" placeholder="Password" ng-model="passwordSignup" required/>
+                    <input type="password" name="password" placeholder="Password" ng-model="passwordSignup" ng-required="true" required/>
 <!--                    <label>Re-Enter Password:</label>-->
-                    <input type="password" name="password" placeholder="Re-enter Password" ng-model="reenterpassword" required/>
+<!--                    <input type="password" name="password" placeholder="Re-enter Password" ng-model="reenterpassword" ng-required="true" required/>-->
 <!--                    <label>Mobile Number:</label>-->
-                    <input type="number" name="Mobile Number" placeholder="Mobile Number" ng-model="phonenumber" required/>
-                    <div class="error-message"><span>Wrong email</span></div>
-                    <button type="submit">Submit</button>
+                    <input type="number" name="Mobile Number" placeholder="Mobile Number" ng-model="phonenumber" ng-required="true" required/>
+                    <div class="error-message"><span ng-show="signup.$dirty">{{errorMessageSignup}}</span></div>
+                    <button type="submit" ng-disabled="signup.$invalid">Submit</button>
                 </form>
             </div>
         </div>

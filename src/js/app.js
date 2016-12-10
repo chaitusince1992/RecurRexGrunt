@@ -2,9 +2,6 @@ var app = angular.module('recurrex', ['ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-        .when('/home', {
-            templateUrl: "templates/home.template.html"
-        })
         .when('/login', {
             templateUrl: "templates/login.template.html",
             controller: 'loginController'
@@ -12,7 +9,6 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/products', {
             templateUrl: "templates/products.template.html",
             controller: 'productsController'
-
         })
         .when('/subscriptions', {
             templateUrl: "templates/subscriptions.template.html",
@@ -55,12 +51,42 @@ app.controller('loginController', ['$scope', 'services', 'constants', '$location
             });
         }
     };
+    $scope.submitSignup = function (validFlag) {
+        if (validFlag) {
+            console.log($scope.firstname);
+            console.log($scope.lastname);
+            console.log($scope.emailSignup);
+            console.log($scope.passwordSignup);
+            console.log($scope.phonenumber);
+            services.registerOrLogin(constants.api.register, {
+                first_name: $scope.firstname,
+                last_name: $scope.lastname,
+                email: $scope.emailSignup,
+                password: $scope.passwordSignup,
+                phone: $scope.phonenumber
+            }, function (data) {
+                console.log(data);
+                localStorage.setItem('accessToken', data.access_token);
+                $location.path("products");
+            }, function (data) {
+                console.log(data);
+                if (data.status != 405) {
+                    $scope.errorMessageLogin = "*" + data.data.message;
+                    $scope.emailLogin = '';
+                    $scope.passwordLogin = '';
+                }
+            });
+        }
+    };
 }]);
 app.controller('subscriptionsController', ['$scope', 'services', 'constants', '$location', function ($scope, services, constants, $location) {
     $scope.init = function () {
         services.callService(constants.api.subscription, 'POST', '', function (res) {
             console.log(res);
-            $scope.subscriptions = res.data;
+            if (res.data == null)
+                $scope.errorMessageSubscription = true;
+            else
+                $scope.subscriptions = res.data;
         }, function (data) {
             console.log(data);
         });
@@ -75,13 +101,14 @@ app.controller('subscriptionsController', ['$scope', 'services', 'constants', '$
         }
     };
     $scope.orderByDate = function (data) {
-//        console.log(data);
+        //        console.log(data);
         console.log(new Date(data.delivery_date).getTime());
         return -new Date(data.delivery_date).getTime();
     }
 }]);
 
 app.controller('productsController', ['$scope', 'services', 'constants', '$location', function ($scope, services, constants, $location) {
+    $scope.disablePaymentFlag = true;
     $scope.init = function () {
         services.callService(constants.api.productList, 'POST', '', function (res) {
             console.log(res.data);
@@ -96,14 +123,51 @@ app.controller('productsController', ['$scope', 'services', 'constants', '$locat
         }
     }
     $scope.clickedOnProduct = function (product) {
-        console.log(product);
-        console.log(product.code);
         console.log(product.recurrence);
-        console.log($scope);
+        $scope.subscriptionPopup = true;
+        $scope.recur = product.recurrence;
+        $scope.productCode = product.code;
     };
     $scope.selectedRecur = function (selectedOne) {
-        return JSON.parse(selectedOne);
+        console.log(selectedOne);
+        $scope.payments = selectedOne.payment_type_formatted;
+        $scope.paymentListVisibility = true;
+        $scope.recurType = selectedOne.code;
+    };
+    $scope.test = function () {
+        console.log($scope.subscribe)
     }
+    $scope.selectedPayment = function (selectedOne) {
+        console.log(selectedOne);
+        //        $scope.disablePaymentFlag = false;
+        $scope.paymentMode = selectedOne;
+    };
+    $scope.subscribeToProduct = function () {
+        var dateValue = new Date($scope.startingDate);
+        var dateString = (dateValue.getDate() + "0").substr(0, 2) + '-' + (dateValue.getMonth() + 1) + '-' + dateValue.getFullYear();
+        var subscriptionObject = {
+            recurrence_code: $scope.recurType,
+            payment_type: $scope.paymentMode,
+            payment_method: 'sms2_pay_and_email',
+            products: [{
+                qty: $scope.noOfProducts,
+                code: $scope.productCode
+            }],
+            start_date: dateString
+        };
+        var subscriptions = [subscriptionObject];
+        console.log(subscriptions);
+        services.callService(constants.api.subscribe, 'POST', {
+            subscriptions: subscriptions
+        }, function (res) {
+            console.log(res);
+            $scope.subscriptionPopup = false;
+            $scope.recur = [];
+            alert("Successfully subscribed..!!")
+        }, function (res) {
+            alert(res.data.message);
+        })
+    };
     $scope.changePlan = function () {
         console.log($scope);
     };
@@ -114,6 +178,9 @@ app.controller('productsController', ['$scope', 'services', 'constants', '$locat
         localStorage.removeItem('accessToken');
         $location.path("login");
     };
+    $scope.closePopUp = function () {
+        $scope.subscriptionPopup = false;
+    }
 }]);
 
 app.constant("constants", {
