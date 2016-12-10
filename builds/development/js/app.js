@@ -22,6 +22,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 app.controller('loginController', ['$scope', 'services', 'constants', '$location', function ($scope, services, constants, $location) {
+    $scope.loadSpinner = false;
     $scope.init = function () {
         console.log(localStorage.getItem('accessToken'));
         if (localStorage.getItem('accessToken') == 'null' || localStorage.getItem('accessToken') == null) {
@@ -34,6 +35,7 @@ app.controller('loginController', ['$scope', 'services', 'constants', '$location
         if (validFlag) {
             console.log($scope.passwordLogin);
             console.log($scope.emailLogin);
+            $scope.loadSpinner = true;
             services.registerOrLogin(constants.api.authenticate, {
                 email: $scope.emailLogin,
                 password: $scope.passwordLogin
@@ -41,13 +43,9 @@ app.controller('loginController', ['$scope', 'services', 'constants', '$location
                 console.log(data);
                 localStorage.setItem('accessToken', data.access_token);
                 $location.path("products");
+                $scope.loadSpinner = false;
             }, function (data) {
                 console.log(data);
-                if (data.status != 405) {
-                    $scope.errorMessageLogin = "*" + data.data.message;
-                    $scope.emailLogin = '';
-                    $scope.passwordLogin = '';
-                }
             });
         }
     };
@@ -58,6 +56,7 @@ app.controller('loginController', ['$scope', 'services', 'constants', '$location
             console.log($scope.emailSignup);
             console.log($scope.passwordSignup);
             console.log($scope.phonenumber);
+            $scope.loadSpinner = true;
             services.registerOrLogin(constants.api.register, {
                 first_name: $scope.firstname,
                 last_name: $scope.lastname,
@@ -68,27 +67,33 @@ app.controller('loginController', ['$scope', 'services', 'constants', '$location
                 console.log(data);
                 localStorage.setItem('accessToken', data.access_token);
                 $location.path("products");
+                $scope.loadSpinner = false;
             }, function (data) {
                 console.log(data);
                 if (data.status != 405) {
                     $scope.errorMessageLogin = "*" + data.data.message;
                     $scope.emailLogin = '';
                     $scope.passwordLogin = '';
+                    $scope.loadSpinner = false;
                 }
             });
         }
     };
 }]);
 app.controller('subscriptionsController', ['$scope', 'services', 'constants', '$location', function ($scope, services, constants, $location) {
+    $scope.loadSpinner = false;
     $scope.init = function () {
+        $scope.loadSpinner = true;
         services.callService(constants.api.subscription, 'POST', '', function (res) {
             console.log(res);
             if (res.data == null)
                 $scope.errorMessageSubscription = true;
             else
                 $scope.subscriptions = res.data;
+            $scope.loadSpinner = false;
         }, function (data) {
             console.log(data);
+            $scope.loadSpinner = false;
         });
     };
     $scope.dateFormat = function (date) {
@@ -108,13 +113,16 @@ app.controller('subscriptionsController', ['$scope', 'services', 'constants', '$
 }]);
 
 app.controller('productsController', ['$scope', 'services', 'constants', '$location', function ($scope, services, constants, $location) {
+    $scope.loadSpinner = false;
     $scope.disablePaymentFlag = true;
     $scope.init = function () {
+        $scope.loadSpinner = true;
         services.callService(constants.api.productList, 'POST', '', function (res) {
             console.log(res.data);
             $scope.productList = res.data;
+            $scope.loadSpinner = false;
         }, function () {
-
+            $scope.loadSpinner = false;
         });
     }
     $scope.productimage = function (prodData) {
@@ -157,16 +165,19 @@ app.controller('productsController', ['$scope', 'services', 'constants', '$locat
         };
         var subscriptions = [subscriptionObject];
         console.log(subscriptions);
+        $scope.loadSpinner = true;
         services.callService(constants.api.subscribe, 'POST', {
             subscriptions: subscriptions
         }, function (res) {
             console.log(res);
             $scope.subscriptionPopup = false;
             $scope.recur = [];
-            alert("Successfully subscribed..!!")
+            alert("Successfully subscribed..!!");
+            $scope.loadSpinner = false;
         }, function (res) {
             alert(res.data.message);
-        })
+            $scope.loadSpinner = false;
+        });
     };
     $scope.changePlan = function () {
         console.log($scope);
@@ -234,3 +245,16 @@ app.service('services', ['$http', 'constants', function ($http, commonConstants)
         });
     }
 }]);
+
+app.directive('footerDir', function () {
+    return {
+        template: '<div class="page-footer"> \
+                    <div class="copy-rights">&copy; NPM Technologies</div> \
+                    <div class="social-links-contaner">Social Network \
+                    <a class="social-links" href="https://www.facebook.com/NPMTechnologies" name="Facebook"> \
+                    <img src="img/FB-fLogo-Blue-broadcast-2.png" /> \
+                    </a><a class="social-links" href="https://twitter.com/npmtechnologies"> \
+                    <img src="img/Twitter_Logo_Blue.png" /></a></div> </div>',
+        replace: true
+    }
+});

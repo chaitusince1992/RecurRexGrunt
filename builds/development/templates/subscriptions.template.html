@@ -5,6 +5,7 @@
         <div class="page-name">User Subscriptions</div>
         <a class="navigation-link" ng-href="#products">Products</a>
         <a class="signup-login-link" ng-click="signout()"><img src="img/logoff.png"></a>
+        <div class="ajax-spinner" ng-show="loadSpinner"><img src="img/ajax-loader.gif" /></div>
     </div>
     <div class="home-page-content login">
         <div class="subscription-container" ng-repeat="subscription in subscriptions" ng-show="!errorMessageSubscription">
@@ -27,16 +28,5 @@
             No Subscriptions are available. Go to <a href="#products">products</a> to Subscribe.
         </div>
     </div>
-    <div class="page-footer">
-        <div class="copy-rights">&copy; NPM Technologies</div>
-        <div class="social-links-contaner">
-            Social Network
-            <a class="social-links" href="https://www.facebook.com/NPMTechnologies" name="Facebook">
-                <img src="img/FB-fLogo-Blue-broadcast-2.png" />
-            </a>
-            <a class="social-links" href="https://twitter.com/npmtechnologies">
-                <img src="img/Twitter_Logo_Blue.png" />
-            </a>
-        </div>
-    </div>
+    <footer-dir></footer-dir>
 </div>

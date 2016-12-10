@@ -87,6 +87,11 @@ form {
 .page-content {
     background: $content-bgcolor;
 }
+.ajax-spinner {
+    position: absolute;
+    top: 4%;
+    left: 30%;
+}
 .recurerex-icon-container {
     height: 90%;
     padding: 5px 0px;
@@ -106,6 +111,7 @@ form {
     font-size: 1.8em;
     font-weight: bold;
 }
+
 .signup-login-link,
 .navigation-link {
     vertical-align: middle;
@@ -123,6 +129,7 @@ form {
     &.login {
         padding: 0;
         height: 0;
+        width: 20%;
     }
     img {
         width: 20px;
@@ -131,7 +138,7 @@ form {
 }
 %page-content {
     width: 100%;
-    min-height: 500px;
+    min-height: 530px;
 }
 .home-page-content {
     @extend %page-content;

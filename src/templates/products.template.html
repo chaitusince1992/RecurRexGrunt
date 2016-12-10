@@ -5,6 +5,7 @@
         <div class="page-name">Products</div>
         <a class="navigation-link" ng-href="#subscriptions">Subscriptions</a>
         <a class="signup-login-link" ng-click="signout()"><img src="img/logoff.png"></a>
+        <div class="ajax-spinner" ng-show="loadSpinner"><img src="img/ajax-loader.gif" /></div>
     </div>
     <div class="home-page-content login">
         <div class="product-container" ng-repeat="product in productList">
@@ -34,7 +35,7 @@
                     <input type="number" name="quantity" ng-model="noOfProducts" ng-required="true" required />
                 </div>
                 <div class="payment-list-parent">
-                    <label ng-click="test()">Quantity</label>
+                    <label ng-click="test()">Date</label>
                     <input type="date" name="fromdate" ng-model="startingDate" ng-required="true" required />
                 </div>
                 <button type="submit" ng-disabled="subscribe.$invalid" ng-click="subscribeToProduct()">Subscribe</button>
@@ -42,16 +43,5 @@
             </form>
         </div>
     </div>
-    <div class="page-footer">
-        <div class="copy-rights">&copy; NPM Technologies</div>
-        <div class="social-links-contaner">
-            Social Network
-            <a class="social-links" href="https://www.facebook.com/NPMTechnologies" name="Facebook">
-                <img src="img/FB-fLogo-Blue-broadcast-2.png" />
-            </a>
-            <a class="social-links" href="https://twitter.com/npmtechnologies">
-                <img src="img/Twitter_Logo_Blue.png" />
-            </a>
-        </div>
-    </div>
+    <footer-dir></footer-dir>
 </div>
